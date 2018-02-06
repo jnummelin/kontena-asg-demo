@@ -1,0 +1,14 @@
+stack: jussi/stress
+description: Runs progrium/stress on multiple instances
+version: 0.1.1
+
+services:
+  stress:
+    image: progrium/stress
+    command: -q --cpu 1 --vm 1 --vm-bytes 128M --timeout 30m
+    deploy:
+      strategy: daemon
+    instances: 1
+    affinity:
+      - label==ephemeral=true
+    cpu_shares: 100
